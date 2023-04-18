@@ -515,23 +515,25 @@ onUnmounted(() => {
     </main>
     <footer :class="footerClass">
       <div class="w-full max-w-screen-xl m-auto">
-        <div class="flex items-center justify-between space-x-2">
-          <HoverButton @click="handleClear">
-            <span class="text-xl text-[#4f555e] dark:text-white">
-              <SvgIcon icon="ri:delete-bin-line" />
-            </span>
-          </HoverButton>
-          <HoverButton v-if="!isMobile" @click="handleExport">
-            <span class="text-xl text-[#4f555e] dark:text-white">
-              <SvgIcon icon="ri:download-2-line" />
-            </span>
-          </HoverButton>
-          <HoverButton v-if="!isMobile" @click="toggleUsingContext">
-            <span class="text-xl" :class="{ 'text-[#4b9e5f]': usingContext, 'text-[#a8071a]': !usingContext }">
-              <SvgIcon icon="ri:chat-history-line" />
-            </span>
-          </HoverButton>
-          <NAutoComplete v-model:value="prompt" :options="searchOptions" :render-label="renderOption">
+        <div class="flex flex-col items-center justify-between relative">
+          <div class="w-full flex justify-end mb-3  space-x-2">
+            <HoverButton @click="handleClear">
+              <span class="text-xl text-[#4f555e] dark:text-white">
+                <SvgIcon icon="ri:delete-bin-line" />
+              </span>
+            </HoverButton>
+            <HoverButton v-if="!isMobile" @click="handleExport">
+              <span class="text-xl text-[#4f555e] dark:text-white">
+                <SvgIcon icon="ri:download-2-line" />
+              </span>
+            </HoverButton>
+            <HoverButton v-if="!isMobile" @click="toggleUsingContext">
+              <span class="text-xl" :class="{ 'text-[#4b9e5f]': usingContext, 'text-[#a8071a]': !usingContext }">
+                <SvgIcon icon="ri:chat-history-line" />
+              </span>
+            </HoverButton>
+          </div>
+          <NAutoComplete v-model:value="prompt" class="h-28" :options="searchOptions" :render-label="renderOption">
             <template #default="{ handleInput, handleBlur, handleFocus }">
               <NInput
                 ref="inputRef"
@@ -546,13 +548,15 @@ onUnmounted(() => {
               />
             </template>
           </NAutoComplete>
-          <NButton type="primary" :disabled="buttonDisabled" @click="handleSubmit">
-            <template #icon>
-              <span class="dark:text-black">
-                <SvgIcon icon="ri:send-plane-fill" />
-              </span>
-            </template>
-          </NButton>
+          <div class="absolute bottom-3 right-3">
+            <NButton class="w-10" type="primary" :disabled="buttonDisabled" @click="handleSubmit">
+              <template #icon>
+                <span class="dark:text-black">
+                  <SvgIcon icon="ri:send-plane-fill" />
+                </span>
+              </template>
+            </NButton>
+          </div>
         </div>
       </div>
     </footer>
