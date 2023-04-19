@@ -57,4 +57,4 @@ jobs:
           SOURCE: dist/
           REMOTE_HOST: ${{ secrets.HOST }}
           REMOTE_USER: ${{ secrets.USER }}
-          TARGET: /usr/share/nginx/html
+          TARGET: /usr/share/nginx/gpt/html
