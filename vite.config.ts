@@ -46,6 +46,7 @@ export default defineConfig((env) => {
     build: {
       reportCompressedSize: false,
       sourcemap: false,
+      minify: 'esbuild',
       commonjsOptions: {
         ignoreTryCatch: false,
       },
